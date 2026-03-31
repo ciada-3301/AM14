@@ -1,0 +1,7 @@
+hashlib
+hmac
+secerets
+struct
+zlib
+typing
+pycryptodome
