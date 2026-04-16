@@ -234,5 +234,35 @@ def main():
         print('Decrypted ->', args.output)
 
 
+class basicTools():
+    class morse():
+        morse_alphabet = {
+        'A': '.-',    'B': '-...',  'C': '-.-.',  'D': '-..',
+        'E': '.',     'F': '..-.',  'G': '--.',   'H': '....',
+        'I': '..',    'J': '.---',  'K': '-.-',   'L': '.-..',
+        'M': '--',    'N': '-.',    'O': '---',   'P': '.--.',
+        'Q': '--.-',  'R': '.-.',   'S': '...',   'T': '-',
+        'U': '..-',   'V': '...-',  'W': '.--',   'X': '-..-',
+        'Y': '-.--',  'Z': '--..'
+        }
+        def encode(string):
+            global morse_alphabet
+            morse_str = ""
+            string = string.lower()
+            string.replace("-", " ")
+            string .replace(".", " ")
+            for char in string:
+                if char.isalpha():
+                    morse_str+= morse_alphabet[char]
+                    morse_str+= " "
+                if not char.isalpha():
+                    pass
+
+            return string
+        def decode(string):
+            return string
+        
+        
+
 if __name__ == '__main__':
     main()
