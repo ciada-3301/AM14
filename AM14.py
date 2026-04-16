@@ -234,33 +234,35 @@ def main():
         print('Decrypted ->', args.output)
 
 
-class basicTools():
-    class morse():
+class basicTools:
+    class morse:
         morse_alphabet = {
-        'A': '.-',    'B': '-...',  'C': '-.-.',  'D': '-..',
-        'E': '.',     'F': '..-.',  'G': '--.',   'H': '....',
-        'I': '..',    'J': '.---',  'K': '-.-',   'L': '.-..',
-        'M': '--',    'N': '-.',    'O': '---',   'P': '.--.',
-        'Q': '--.-',  'R': '.-.',   'S': '...',   'T': '-',
-        'U': '..-',   'V': '...-',  'W': '.--',   'X': '-..-',
-        'Y': '-.--',  'Z': '--..'
+            'A': '.-',    'B': '-...',  'C': '-.-.',  'D': '-..',
+            'E': '.',     'F': '..-.',  'G': '--.',   'H': '....',
+            'I': '..',    'J': '.---',  'K': '-.-',   'L': '.-..',
+            'M': '--',    'N': '-.',    'O': '---',   'P': '.--.',
+            'Q': '--.-',  'R': '.-.',   'S': '...',   'T': '-',
+            'U': '..-',   'V': '...-',  'W': '.--',   'X': '-..-',
+            'Y': '-.--',  'Z': '--..'
         }
-        def encode(string):
-            global morse_alphabet
-            morse_str = ""
-            string = string.lower()
-            string.replace("-", " ")
-            string .replace(".", " ")
-            for char in string:
-                if char.isalpha():
-                    morse_str+= morse_alphabet[char]
-                    morse_str+= " "
-                if not char.isalpha():
-                    pass
 
-            return string
-        def decode(string):
-            return string
+        @staticmethod
+        def encode(text):
+            # Reference the dict via the nested class path
+            lookup = basicTools.morse.morse_alphabet
+            # Convert to upper to match keys; ignore non-alphabetic chars
+            return " ".join(lookup[char] for char in text.upper() if char in lookup)
+
+        @staticmethod
+        def decode(morse_code):
+            # Reverse the dictionary: {code: letter}
+            reverse_lookup = {v: k for k, v in basicTools.morse.morse_alphabet.items()}
+            # Split by space and translate back
+            return "".join(reverse_lookup[code] for code in morse_code.split() if code in reverse_lookup)
+
+    
+
+
         
         
 
